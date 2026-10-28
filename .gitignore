@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.auth/
+playwright-report/
+test-results/
+blob-report/
+triage-report.json
+triage-comment.md
+.env
+.DS_Store

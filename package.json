@@ -1,0 +1,35 @@
+{
+  "name": "sentinela-qa-platform",
+  "version": "1.0.0",
+  "description": "AI-Augmented Quality Platform, Risk Engine & Playwright E2E Test Suite targeting Practice Software Testing (Toolshop)",
+  "private": true,
+  "scripts": {
+    "sandbox:start": "npx tsx src/sandbox/server.ts",
+    "test": "npx playwright test",
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:pay": "npx playwright test --grep @pay",
+    "test:a11y": "npx playwright test --grep @a11y",
+    "test:api": "npx playwright test --grep @api",
+    "test:live": "TARGET_ENV=live npx playwright test",
+    "test:live-buggy": "TARGET_ENV=live-buggy npx playwright test",
+    "test:docker": "TARGET_ENV=docker npx playwright test",
+    "test:chaos:api500": "CHAOS_MODE=api_500 npx playwright test tests/checkout-payment.spec.ts --retries=0",
+    "test:chaos:drift": "CHAOS_MODE=selector_drift npx playwright test tests/catalog-search.spec.ts --retries=0",
+    "test:risk": "npx tsx scripts/risk-engine.ts",
+    "test:risk:run": "npx tsx scripts/risk-engine.ts --run",
+    "triage:preview": "npx tsx scripts/post-pr-triage.ts --dry-run",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "report": "npx playwright show-report"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.49.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
